@@ -1,15 +1,15 @@
-# ########################
+########################
 # General Exclusions
-# ########################
+########################
 *.log
 *.tmp
 *.temp
 .DS_Store
 Thumbs.db
 
-# ########################
+########################
 # IDE and Editor Configs
-# ########################
+########################
 .vscode/
 .idea/
 *.swp
@@ -17,31 +17,33 @@ Thumbs.db
 .Rhistory
 .groupedtimelineinclude
 
-# ########################
+########################
 # Python / Backend
-# ########################
+########################
 /backend/venv/
 /backend/**/__pycache__/
 *.pyc
 
-# User-specific local content (add .gitkeep to track empty folders)
-/backend/chapters/*
-!/backend/chapters/.gitkeep
-/backend/cache/*
-!/backend/cache/.gitkeep
-/backend/src/web/static/results/*
-!/backend/src/web/static/results/.gitkeep
+# User-specific local content (keep folder, ignore contents)
+backend/chapters/*
+!backend/chapters/.gitkeep
 
-# ########################
+backend/cache/*
+!backend/cache/.gitkeep
+
+backend/src/web/static/results/*
+!backend/src/web/static/results/.gitkeep
+
+########################
 # AI Models & Voices
-# ########################
+########################
 /backend/src/models/**/*.pt
 /backend/src/models/**/*.onnx
 /backend/src/models/**/*.json
 
-# ########################
+########################
 # Frontend (Vue / Vite)
-# ########################
+########################
 /frontend/node_modules/
 /frontend/dist/
 /frontend/dist-ssr/
@@ -58,9 +60,9 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
-# ########################
+########################
 # Tunnelling Tool
-# ########################
+########################
 ngrok
 ngrok.exe
 ngrok.yml
