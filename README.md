@@ -1,34 +1,57 @@
 # 🗨️ RemComic Reader
 
-A fast, modern, and hostable web application for reading comics with AI-powered features. This repository contains the **public frontend application**.
-
-The comic processing (AI detection, OCR, TTS) is handled by a separate, private tool: `remcomic-processor`. The static output of that tool is placed in the `/public` directory of this repository and then deployed.
-
----
-
-## ✨ Features
-
-*   **🚀 Blazing Fast:** A fully static architecture means instant load times with zero backend processing delays for the user.
-*   **🗣️ Text-to-Speech:** Pre-generated audio for all speech bubbles allows for an audiobook-like experience.
-*   **✨ Modern & Responsive UI:** A clean Vue.js frontend that works on any device.
-*   **🌐 Host Anywhere:** Easily deploy the entire reader to any modern static hosting provider like Vercel, Netlify, or GitHub Pages.
+This is the lightweight web app for reading pre-processed comics with accessibility in mind.  
+It fetches comic assets (JSON, images, audio) from your cloud storage and presents them in a browser-friendly interface.
 
 ---
 
-## 🚀 How to Deploy Your Own Reader
+## 🌐 Deploy Your Own
 
-1.  **Generate Your Content:**
-    *   Use the private `remcomic-processor` tool to process your comic book library. This will generate a folder of static assets (images, audio files, and JSON data).
+You can easily deploy this project to **Vercel** or **Netlify**.
 
-2.  **Populate the `public` Directory:**
-    *   Fork this repository.
-    *   Copy the generated assets from your processor's output into the `/public` directory of your forked repository. For example, your `public` directory will now contain `chapters.json`, a `chapter-1` folder, etc.
+### 1. Deploy to Vercel/Netlify
+- Sign up for a free account on [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
+- Create a **New Project/Site** and import this repository.
+- The framework should be detected as **Vite**. The default build settings are correct.
 
-3.  **Deploy to Vercel/Netlify:**
-    *   Sign up for a free account on [Vercel](https://vercel.com) or [Netlify](https://www.netlify.com).
-    *   Create a "New Project/Site" and import your forked repository.
-    *   The framework should be detected as **Vite**. The default build settings are correct. Set the "Output Directory" to `dist`.
-    *   You do **not** need to set any special environment variables for this simple static setup.
-    *   Click **Deploy**.
+### 2. Set Environment Variable
+In your project settings → **Environment Variables**, add:
 
-Your comic reader is now live and serving the content you generated.
+Key: VITE_ASSETS_URL
+Value: https://your-bucket-url.example.com
+
+yaml
+Copy code
+
+(Use the public root URL of your S3/R2 bucket where your comic assets are hosted.  
+Example: `https://pub-12345.r2.dev`)
+
+### 3. Deploy
+Trigger a new deployment.  
+Your comic reader will now be live and fetching content directly from your cloud storage.
+
+---
+
+## 📂 Comic Assets
+
+This reader expects your assets to already be uploaded and publicly accessible.  
+The bucket should have a structure similar to:
+
+public/
+├── chapters.json
+└── chapter-1/
+	├── 01.json
+	├── 02.json
+	├── 01.jpg
+	├── 02.jpg
+	└── audio/
+		├── chapter-1_01_bubble_1_speed_1_0.mp3
+
+yaml
+Copy code
+
+(How you generate or upload these files is up to you and is **not included** in this repository.)
+
+---
+
+✅ That’s it! Once deployed, you’ll have your own hosted comic reader that loads content straight from your bucket.
